@@ -4,10 +4,14 @@ import Developer from './pages/Developer';
 import Schedule from './pages/Schedule';
 import Teams from './pages/Teams';
 import Home from './pages/Home';
-const App=()=>{
+import Timer from './components/Home/Timer/CountdownTimer'
+
+const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home/>} />
+      {/* Corrected line below */}
+      <Route path="/" element={<><Home/><Timer/></>} />
+      
       <Route path='/Events' element={<Events/>}/>
       <Route path='/Developer' element={<Developer/>}/>
       <Route path='/Schedule' element={<Schedule/>}/>
@@ -15,4 +19,5 @@ const App=()=>{
     </Routes>
   );
 }
-export default App
+
+export default App;
