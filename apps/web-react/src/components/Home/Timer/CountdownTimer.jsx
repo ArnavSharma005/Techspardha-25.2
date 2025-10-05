@@ -4,7 +4,6 @@ const CountdownTimer = () => {
   const calculateTimeLeft = () => {
     const difference = +new Date('2025-10-15T00:00:00') - +new Date();
     let timeLeft = {};
-
     if (difference > 0) {
       timeLeft = {
         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -13,27 +12,20 @@ const CountdownTimer = () => {
         seconds: Math.floor((difference / 1000) % 60),
       };
     }
-
     return timeLeft;
   };
-
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
-
     return () => clearTimeout(timer);
   });
-
   const timerComponents = [];
-
   Object.keys(timeLeft).forEach((interval) => {
     if (!timeLeft[interval] && timeLeft[interval] !== 0) {
       return;
     }
-
     timerComponents.push(
       <div key={interval} className="flex flex-col items-center">
         <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center bg-amber-700 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105" style={{ perspective: '1000px' }}>
