@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, forwardRef } from 'react';
 import bgImg from '../../../assets/photos/Sponsors/Container.png';
 
 import sponsor1 from '../../../assets/photos/Sponsors/sponsor1.png';
@@ -10,7 +10,7 @@ import sponsor6 from '../../../assets/photos/Sponsors/sponsor6.png';
 
 const cycleMs = 4000;
 
-function Sponsors() {
+const Sponsors = forwardRef(({ ...props }, ref) => {
   const sponsorImages = [sponsor1, sponsor2, sponsor3, sponsor4, sponsor5, sponsor6];
 
   const groups = [];
@@ -34,8 +34,12 @@ function Sponsors() {
 
   return (
     <div
+      ref={ref}
+      id="sponsors"
+      data-section="sponsors"
       className="w-full h-[50vh] md:h-screen bg-customBlack flex items-center justify-center relative overflow-hidden"
       style={{ backgroundImage: `url(${bgImg})` }}
+      {...props}
     >
       <div className="relative z-10 flex flex-col items-center">
         <h1 className="text-5xl md:text-7xl font-extrabold text-primary mb-16 font-gta tracking-wide">
@@ -69,6 +73,8 @@ function Sponsors() {
       />
     </div>
   );
-}
+});
+
+Sponsors.displayName = 'Sponsors';
 
 export default Sponsors;
